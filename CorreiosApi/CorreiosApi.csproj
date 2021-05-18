@@ -53,7 +53,6 @@
     <Compile Include="API\ReqEstados.cs" />
     <Compile Include="API\ReqMunicUF.cs" />
     <Compile Include="API\Requisicao.cs" />
-    <Compile Include="Conversor.cs" />
     <Compile Include="Dominio\CorreiosObj.cs" />
     <Compile Include="Dominio\CorreiosRoot.cs" />
     <Compile Include="Dominio\DadosObj.cs" />

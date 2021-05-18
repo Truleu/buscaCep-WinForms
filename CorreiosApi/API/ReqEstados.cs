@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CorreiosApi.API
@@ -17,6 +18,7 @@ namespace CorreiosApi.API
             var link = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
             HttpWebRequest request = HttpWebRequest.CreateHttp(link);
             request.Method = metodo;
+            Thread.Sleep(500);
 
             return request;
         }

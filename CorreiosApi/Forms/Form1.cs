@@ -19,6 +19,7 @@ namespace CorreiosApi
     public partial class Form1 : Form
     {
         Requisicao requisicao = new Requisicao();
+        ReqEstados reqEstados = new ReqEstados();
         ReqMunicUF reqMunic = new ReqMunicUF();
 
         public Form1()
@@ -41,15 +42,16 @@ namespace CorreiosApi
                 textCep.Enabled = false;
             }
         }
+
         private void cepButton_CheckedChanged(object sender, EventArgs e)
         {
             if (cepButton.Checked)
             {
+                estadoBox.Text = "";
+                cidadeBox.Text = "";
                 estadoBox.Enabled = false;
                 cidadeBox.Enabled = false;
                 textCep.Enabled = true;
-                estadoBox.Text = "";
-                cidadeBox.Text = "";
                 textCep.Clear();
                 textResultado.Clear();
                 cepLabel.Visible = true;
@@ -86,8 +88,6 @@ namespace CorreiosApi
         private void pesquisaCep_Click(object sender, EventArgs e)
         {
             textResultado.Clear();
-            textResultado.Font = new Font("Microsoft Sans Serif", 12, FontStyle.Regular);
-            textResultado.ForeColor = System.Drawing.Color.Black;
 
             string requiString;
             this.inputUser = textCep.Text;
@@ -107,8 +107,8 @@ namespace CorreiosApi
                 {
                     if (enderecoButton.Checked)
                     {
-                        requisicao.UrlEnd(estadoBox.SelectedItem.ToString(), cidadeBox.SelectedItem.ToString(), inputUser);
-                        var requiEnd = requisicao.ObterEnd();
+                    requisicao.UrlEnd(estadoBox.SelectedItem.ToString(), cidadeBox.SelectedItem.ToString(), inputUser);
+                    var requiEnd = requisicao.ObterEnd();
                         foreach (var requiE in requiEnd)
                         {
                             var requiStringEnd = $"CEP: {requiE.Cep} \r\nLogradouro: {requiE.Logradouro} \r\nComplemento: {requiE.Complemento} \r\nBairro: {requiE.Bairro} \r\nLocalidade: {requiE.Localidade} \r\nUF: {requiE.Uf} \r\nDDD: {requiE.Ddd} \r\n-\r\n";
@@ -126,6 +126,8 @@ namespace CorreiosApi
                 else
                 {
                     requiString = $"CEP: {requi.Cep} \r\nLogradouro: {requi.Logradouro} \r\nComplemento: {requi.Complemento} \r\nBairro: {requi.Bairro} \r\nLocalidade: {requi.Localidade} \r\nUF: {requi.Uf} \r\nDDD: {requi.Ddd}";
+                    textResultado.Font = new Font("Microsoft Sans Serif", 12, FontStyle.Regular);
+                    textResultado.ForeColor = System.Drawing.Color.Black;
                     textResultado.AppendText(requiString);
                 }
             }
@@ -159,6 +161,7 @@ namespace CorreiosApi
                 textCep.Enabled = true;
             }
         }
+
         private void buscaMobButton_Click(object sender, EventArgs e)
         {
             FormMobile formMobile = new FormMobile();

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using System.Threading;
 
 namespace CorreiosApi.API
 {
@@ -35,6 +36,7 @@ namespace CorreiosApi.API
         {
             HttpWebRequest request = HttpWebRequest.CreateHttp(linkCompleto);
             request.Method = metodo;
+            Thread.Sleep(900);
 
             return request;
         }

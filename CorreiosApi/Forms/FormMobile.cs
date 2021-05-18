@@ -38,6 +38,13 @@ namespace CorreiosApi.Forms
                 return;
             }
             var requis = requisicao.ObterCorreios();
+            if (!requis.Dados.Any())
+            {
+                textMobResultado.Font = new Font("Arial", 18, FontStyle.Bold);
+                textMobResultado.ForeColor = System.Drawing.Color.DarkRed;
+                textMobResultado.AppendText("Endereço não encontrado");
+                return;
+            }
             textMobResultado.Font = new Font("Microsoft Sans Serif", 12, FontStyle.Regular);
             textMobResultado.ForeColor = System.Drawing.Color.Black;
             foreach (var requi in requis.Dados)
